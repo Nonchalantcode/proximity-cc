@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import PostList from './components/PostList'
-import './main.scss'
 import { getPosts } from './reducers/postsReducer'
+import { getComments } from './reducers/commentsReducer'
+import './main.scss'
 
 function App() {
   const dispatch = useDispatch()
@@ -12,6 +13,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getPosts())
+    dispatch(getComments())
   }, [dispatch])
 
   return (

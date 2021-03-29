@@ -1,4 +1,4 @@
-import { getAllPosts, getAllComments } from '../service/socialMediaServices'
+import { getAllPosts } from '../service/socialMediaServices'
 
 const postsReducer = (state = [], action) => {
     switch(action.type) {
@@ -9,28 +9,14 @@ const postsReducer = (state = [], action) => {
     }
 }
 
-const unifyCommentsData = (comments) => {
-    /* Returns a dictionary mapping posts ids to their comments */
-    return comments.reduce((commentsDict, currentComment) => {
-      const { postId, name, email, body } = currentComment
-      if( postId in commentsDict ) {
-        commentsDict[postId].push({ name, email, body })
-      } else {
-        commentsDict[postId] = [{ name, email, body }]
-      }
-      return commentsDict
-    }, Object.create(null))
-  }
-
-  const unifyPostsData = (posts, comments) => {
+const unifyPostsData = (posts) => {
     /* Returns a dictionary mapping posts ids to their comments, title, and body */
-    const commentsData = unifyCommentsData(comments)
     return posts.reduce((postsColl, currentPost) => {
       const { id, title, body } = currentPost
       postsColl.push({
-        comments: commentsData[id],
         title,
-        body
+        body,
+        id
       })
       return postsColl
     }, [])
@@ -40,10 +26,9 @@ export const getPosts = () => {
     return async dispatch => {
       try {
         const { data: postsData } = await getAllPosts()
-        const { data: commentsData } = await getAllComments()
         dispatch({
             type: 'INIT_POSTS',
-            data: unifyPostsData(postsData, commentsData)
+            data: unifyPostsData(postsData)
         })
       } catch (err) {
         dispatch({
@@ -52,6 +37,16 @@ export const getPosts = () => {
         })
       }
     }
+}
+
+export const postComment = ({ postTitle, comment }) => {
+  return {
+    type: 'POST_COMMENT',
+    data: {
+      postTitle,
+      comment
+    }
+  }
 }
 
 export default postsReducer
