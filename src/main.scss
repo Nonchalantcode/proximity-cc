@@ -13,3 +13,45 @@ body {
     background-color: green;
     color: #fff;
 }
+
+.text-center {
+    text-align: center;
+}
+
+.posts-container {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0;
+    // align-items: center;
+    > li {
+        max-width: 320px;
+        margin: 0.5em;
+        border: 2px solid #7d7676;
+        border-radius: 6px;
+        border-top-color: #59ff92;
+        border-right-color: #43aa8b;
+        border-bottom-color: #344c93;
+        cursor: pointer;
+        transition: 0.15s box-shadow ease-in;
+        &:hover,
+        &:active {
+            box-shadow: 1px 2px 6px #7d7d7d;
+        }
+        .post {
+            margin: 0.5em;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            height: 100%;
+            .post-title {
+                margin-top: 0;
+            }
+            .comments-count {
+                align-self: baseline;
+            }
+        }
+    }
+}
