@@ -1,5 +1,6 @@
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import PostModal from './PostModal'
 
 const PostList = ({posts}) => {
     return (
@@ -10,9 +11,9 @@ const PostList = ({posts}) => {
                         <div className="post">
                             <h3 className="post-title">{ post.title }</h3>
                             <div className="post-summary">{ post.body.slice(0, 50)}...</div>
-                            <span className="comments-count">
-                                comments ({ post.comments.length })
-                            </span>
+                            <div className="open">
+                                <PostModal post={post} />
+                            </div>
                         </div>
                     </li>    
                 )
