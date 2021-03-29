@@ -38,12 +38,19 @@ const unifyCommentsData = (comments) => {
 
 export const getPosts = () => {
     return async dispatch => {
+      try {
         const { data: postsData } = await getAllPosts()
         const { data: commentsData } = await getAllComments()
         dispatch({
             type: 'INIT_POSTS',
             data: unifyPostsData(postsData, commentsData)
         })
+      } catch (err) {
+        dispatch({
+          type: 'INIT_POSTS',
+          data: []
+        })
+      }
     }
 }
 
