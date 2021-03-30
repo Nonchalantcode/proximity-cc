@@ -9,6 +9,9 @@ const postsReducer = (state = [], action) => {
     }
 }
 
+
+/* Action creators for the postReducer() reducer */
+
 const unifyPostsData = (posts) => {
     /* Returns a dictionary mapping posts ids to their comments, title, and body */
     return posts.reduce((postsColl, currentPost) => {
