@@ -5,13 +5,13 @@ import thunk from 'redux-thunk'
 
 
 const reducers = combineReducers({
-    posts: postsReducer,
-    comments: commentsReducer
+	posts: postsReducer,
+	comments: commentsReducer
 })
 
 const store = createStore(
-    reducers,
-    applyMiddleware(thunk)
+	reducers,
+	applyMiddleware(thunk)
 )
 
 export default store
