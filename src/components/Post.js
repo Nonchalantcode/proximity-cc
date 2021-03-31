@@ -18,8 +18,11 @@ const Post = ({ post }) => {
 				<p><strong>Comments ({comments[post.id].length})</strong></p>
 				<ul>
 					{
-						comments[post.id].map(comment => (
-							<li key={ uuidv4() }>
+						comments[post.id].map((comment) => (
+							<li 
+								key={ uuidv4() } 
+								className="user-comment"
+							>
 								<p className="author badge">{ comment.email }</p>
 								<p className="content">{ comment.body }</p>
 							</li>

@@ -20,17 +20,12 @@ const PostModal = ({ post }) => {
             <span className="modal-trigger" onClick={openModal}>
                 View Post
             </span>
-            <Modal isOpen={isOpen} onRequestClose={closeModal}>
+            <Modal 
+				isOpen={isOpen} 
+				onRequestClose={closeModal}
+				>
                 <button 
                     className="close-trigger" 
-                    style={{
-                        position: 'absolute',
-                        right: '10px',
-                        color: '#000',
-                        border: 'initial',
-                        fontSize: '16px',
-                        cursor: 'pointer'
-                    }}
                     onClick={closeModal}
                 >
                     X
