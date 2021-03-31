@@ -2,20 +2,20 @@ import { getAllComments } from '../service/socialMediaServices'
 
 const commentsReducer = (state = Object.create(null), action) => {
 	switch(action.type) {
-	case 'INIT_COMMENTS':  {
-		return action.data
-	}
-	case 'POST_COMMENT': {
-		const comment = {
-			body: action.data.comment,
-			name: 'anonymous',
-			email: 'anonymous.user@hello.com'
+		case 'INIT_COMMENTS':  {
+			return action.data
 		}
-		const comments = [comment, ...state[action.data.postId]]
-		return {...state, [action.data.postId]: comments}
-	} 
-	default:
-		return state
+		case 'POST_COMMENT': {
+			const comment = {
+				body: action.data.comment,
+				name: 'anonymous',
+				email: 'anonymous.user@hello.com'
+			}
+			const comments = [comment, ...state[action.data.postId]]
+			return {...state, [action.data.postId]: comments}
+		} 
+		default:
+			return state
 	}
 }
 
