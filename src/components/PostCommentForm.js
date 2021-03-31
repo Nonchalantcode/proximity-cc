@@ -1,16 +1,16 @@
-/* eslint-disable react/prop-types */
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { postComment } from '../reducers/commentsReducer'
 
 const PostCommentForm = ({ postId }) => {
+	const [message, setMessage] = useState('')
 	const dispatch = useDispatch()
 	const formHandler = (ev) => {
 		ev.preventDefault()
 		dispatch(
-			postComment(postId , ev.target.comment.value )
+			postComment(postId , message )
 		)
-		ev.target.comment.value = ''
+		setMessage('')
 	}
 
 	return (
@@ -22,6 +22,8 @@ const PostCommentForm = ({ postId }) => {
 						cols="40"
 						rows="5"
 						name="comment"
+						value={message}
+						onChange={ev => setMessage(ev.target.value)}
 						placeholder="Enter your comment here">
 
 					</textarea>
